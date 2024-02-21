@@ -1,0 +1,20 @@
+---
+import BlogHeader from "@/components/showcase-header.astro";
+import ShowcaseCard from "@/components/cards/showcase-card.astro";
+import MainLayout from "@/layouts/main-layout.astro";
+import { getShowcase } from "@/lib/fetchers";
+
+const posts = await getShowcase();
+---
+
+<MainLayout title="Showcase">
+  <section class="container py-10">
+    <BlogHeader title="Showcase" />
+
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-9 md:gap-y-11 lg:gap-y-16 lg:gap-x-8"
+    >
+      {posts.map((showcase) => <ShowcaseCard {...showcase} />)}
+    </div>
+  </section>
+</MainLayout>

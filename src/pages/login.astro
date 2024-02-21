@@ -1,0 +1,29 @@
+---
+import UserAuthForm from "@/components/forms/user-auth-form.astro";
+import { buttonVariants } from "@/components/ui/button";
+import AuthLayout from "@/layouts/auth-layout.astro";
+import { cn } from "@/lib/utils";
+---
+
+<AuthLayout title="Login" description="Login">
+  <!-- <a
+    href="/register"
+    slot="right-corner"
+    class={cn(buttonVariants({ variant: "ghost" }))}
+  >
+   Sign up 
+  </a> -->
+
+  
+   <div class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-96">
+
+    <!-- <div class="flex flex-col space-y-2 text-center">
+      <h1 class="text-2xl font-semibold tracking-tight">Richiedi una consulenza gratuita</h1>
+      <p class="text-sm text-muted-foreground">
+        Compila il form e ricevi una consulenza professionale sui servizi di sviluppo web, garantendo un approccio pragmatico e orientato ai risultati.
+      </p>
+    </div>-->
+
+    <div id="wufoo-m1omqz7m1l8gguu"> Fill out my <a href="https://livedata.wufoo.com/forms/m1omqz7m1l8gguu">online form</a>. </div> <script type="text/javascript"> var m1omqz7m1l8gguu; (function(d, t) { var s = d.createElement(t), options = { 'userName':'livedata', 'formHash':'m1omqz7m1l8gguu', 'autoResize':true, 'height':'641', 'async':true, 'host':'wufoo.com', 'header':'hide', 'ssl':true }; s.src = ('https:' == d.location.protocol ?'https://':'http://') + 'secure.wufoo.com/scripts/embed/form.js'; s.onload = s.onreadystatechange = function() { var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return; try { m1omqz7m1l8gguu = new WufooForm(); m1omqz7m1l8gguu.initialize(options); m1omqz7m1l8gguu.display(); } catch (e) { } }; var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr); })(document, 'script'); </script>
+  </div>
+</AuthLayout>

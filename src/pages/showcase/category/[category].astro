@@ -1,0 +1,38 @@
+---
+import BlogHeader from "@/components/showcase-header.astro";
+import ShowcaseCard from "@/components/cards/showcase-card.astro";
+import MainLayout from "@/layouts/main-layout.astro";
+import { getShowcaseByCategory } from "@/lib/fetchers";
+import { capitalizer } from "@/lib/utils";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("showcase");
+  return posts.map((post) => ({
+    params: { category: post.data.category },
+  }));
+}
+
+const { category } = Astro.params;
+
+if (!category) {
+  return new Response(null, {
+    status: 404,
+    statusText: "Not found",
+  });
+}
+
+const posts = await getShowcaseByCategory(category);
+---
+
+<MainLayout title={`${capitalizer(category)} | Showcase`} description={`Showcase categoria ${category} `}>
+  <section class="container py-10">
+    <BlogHeader title={`Categoria: ${category} `} />
+
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-9 md:gap-y-16 lg:gap-x-8"
+    >
+      {posts.map((post) => <ShowcaseCard {...post} />)}
+    </div>
+  </section>
+</MainLayout>

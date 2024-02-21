@@ -1,0 +1,20 @@
+---
+import BlogHeader from "@/components/servizi-header.astro";
+import ServiziCard from "@/components/cards/servizi-card.astro";
+import MainLayout from "@/layouts/main-layout.astro";
+import { getServizi } from "@/lib/fetchers";
+
+const posts = await getServizi();
+---
+
+<MainLayout title="Servizi">
+  <section class="container py-10">
+    <BlogHeader title="Servizi" />
+
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-9 md:gap-y-11 lg:gap-y-16 lg:gap-x-8"
+    >
+      {posts.map((servizi) => <ServiziCard {...servizi} />)}
+    </div>
+  </section>
+</MainLayout>

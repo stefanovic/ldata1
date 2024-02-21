@@ -1,0 +1,267 @@
+---
+import MainLayout from "@/layouts/main-layout.astro";
+import Firebase1 from "../components/firebase1.astro";
+import AjaxTextRotator from "../components/ajaxTextRotator.astro";
+
+
+
+---
+<script>
+  window.global ||= window;
+  
+  </script>
+<MainLayout
+  title="Chi siamo"
+  description="Lorem ipsum dolor sit amet"
+  mainClass="container py-10"
+>
+  <section class="space-y-5">
+    <style>
+
+div#myNews {
+    width: 300px;
+    height: 300px;
+    z-index: 1000;
+    position: relative;
+}
+
+    </style>
+    
+
+
+    <h1 class="font-heading text-4xl">Chi siamo</h1>
+ 
+    
+
+
+
+    <p>
+      Siamo una piccola realtà nel mondo dello sviluppo web, un team fluido e dinamico guidato da due esperti sviluppatori. La nostra competenza abbraccia sia l’approccio classico allo sviluppo web, con HTML, CSS, JavaScript e PHP, sia le tecniche più recenti come JamStack e Headless CMS.
+    </p>
+
+    <p>
+      Il nostro obiettivo non è solo creare siti e applicativi web, ma creare valore aggiunto per i nostri clienti. Crediamo fermamente nel potere dell’open source e miriamo a rendere i nostri clienti il più indipendenti possibile, fornendo loro gli strumenti e le conoscenze necessarie per gestire e mantenere i loro progetti web.
+    </p>
+
+    <p>
+      La nostra strategia di contenuto è guidata dai dati. Analizziamo attentamente le metriche per capire cosa funziona e cosa no, permettendoci di ottimizzare continuamente i nostri siti web per ottenere i migliori risultati. Inoltre, siamo esperti in SEO, assicurandoci che i nostri siti web siano facilmente trovabili dai motori di ricerca.
+    </p>
+
+    <p>
+      Siamo piccoli ma determinati, e la nostra forza risiede nella nostra capacità di adattarci e innovare. Se stai cercando un partner di sviluppo web che capisce le tue esigenze e lavora per aiutarti a raggiungere i tuoi obiettivi, siamo qui per te.
+    </p>
+
+ <!--   <p>
+      Le immagini sono state create con l’assistenza di un’intelligenza artificiale per rappresentare al meglio i nostri concetti di sviluppo web, content strategy e innovazione. Speriamo che vi piacciano tanto quanto a noi!”
+    </p> --> 
+
+  </section>
+
+
+  <section class="container py-8 md:py-12 lg:py-8">
+
+    
+  
+    <ul role="list" class="max-w-sm divide-y divide-gray-200 dark:divide-gray-700">
+      <li class="py-3 sm:py-4">
+          <div class="flex items-center space-x-3 rtl:space-x-reverse">
+            
+              <div class="flex-1 min-w-0">
+                  <p id="news-container" class="text-sm font-semibold text-gray-900  dark:text-white">
+                   Prismic CMS
+                  </p>
+
+                 
+
+    <div id="text-rotator"></div>
+
+    <style>
+      /* Stile per l'animazione di dissolvenza */
+      #text-rotator a {
+          opacity: 0;
+          transition: opacity 0.5s ease;
+      }
+  </style>
+
+              </div>
+              <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                  <span class="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
+                  headless
+              </span>
+          </div>
+      </li>
+    
+    </ul>
+    
+
+
+
+
+    <script type='module'>
+      import * as prismic from 'https://cdn.skypack.dev/@prismicio/client'
+
+      const repositoryName = 'livedatapoc'
+      const client = prismic.createClient(repositoryName)
+
+      const init = async () => {
+       const prismicDoc = await client.getFirst()
+       const { titolo, testo } = prismicDoc.data
+
+       const titleHTML = prismic.asHTML(titolo)
+       const descriptionHTML = prismic.asHTML(testo)
+       const container = document.getElementById('prismicContainer')
+       container.innerHTML = titleHTML + descriptionHTML
+
+      
+     }
+
+     init();
+
+
+
+    </script>
+
+
+<div id="prismicContainer"></div>
+
+<br><br>
+
+
+<ul role="list" class="max-w-sm divide-y divide-gray-200 dark:divide-gray-700">
+  <li class="py-3 sm:py-4">
+      <div class="flex items-center space-x-3 rtl:space-x-reverse">
+        
+          <div class="flex-1 min-w-0">
+              <p id="news-container" class="text-sm font-semibold text-gray-900  dark:text-white">
+               ProcessWire Headless API
+              </p>
+
+ 
+
+          </div>
+          <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+              <span class="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
+              headless
+          </span>
+      </div>
+  </li>
+
+</ul>
+
+
+<div id="processwireContainer"></div> 
+
+<script>
+
+  document.addEventListener("DOMContentLoaded", function() {
+  
+      // Chiave API
+      var apiKey = "I7ig0tVInqF8BLYvQIUoh"; // Sostituisci con la tua chiave API
+  
+  // URL per la chiamata API
+  var apiUrl = "https://webapps.livedata.it/api/page/lighthouse";
+  
+  function callApiFunc() {
+  // Funzione per gestire la risposta dell'API
+  //const handleApiResponse = async (data) => {
+  function handleApiResponse(data) {
+      // Accesso alle proprietà dell'oggetto
+      var id = data.id;
+      var name = data.name;
+      var title = data.title;
+      var body = data.body;
+      var headline = data.headline;
+  
+      // Creazione di nuovi elementi per mostrare i dati
+      var heading = document.createElement("h1");
+      heading.textContent = title;
+  
+      var idParagraph = document.createElement("p");
+      idParagraph.textContent = "ID: " + id;
+  
+      var nameParagraph = document.createElement("p");
+      nameParagraph.textContent = "Name: " + name;
+
+      var headlineHeadless = document.createElement("div");
+      headlineHeadless.innerHTML = headline;
+  
+      var bodyDiv = document.createElement("div");
+      bodyDiv.innerHTML = body;
+  
+      // Trova l'elemento in cui vuoi aggiungere i nuovi elementi (ad esempio, il body)
+      //var container = document.body; // Cambia questo se vuoi aggiungere gli elementi altrove
+      var container = document.getElementById("processwireContainer"); 
+  
+      // Aggiungi i nuovi elementi all'elemento
+     // container.appendChild(heading);
+      // container.appendChild(idParagraph);
+      // container.appendChild(nameParagraph);
+          container.appendChild(headlineHeadless);
+      //container.appendChild(bodyDiv);
+  }
+  
+  // Effettua la chiamata API utilizzando fetch con l'autenticazione X-API-KEY
+  fetch(apiUrl, {
+      method: "GET",
+      headers: {
+          "X-API-KEY": apiKey
+      }
+  })
+  .then(response => {
+      if (!response.ok) {
+          throw new Error("Errore nella risposta del server: " + response.status);
+      }
+      return response.json();
+  })
+  .then(data => handleApiResponse(data))
+  .catch(error => console.error("Errore nella chiamata API:", error));
+
+  
+}
+  
+
+    });
+
+  
+  
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+<div id="text-rotator"></div>
+  
+<style>
+  /* Stile per l'animazione di dissolvenza */
+  #text-rotator a {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+  }
+</style>
+
+
+    <h1 class="font-heading text-4xl" id="titoloSanity"></h1>
+
+    <p id="testo1"></p>
+
+    <p id="testo2"></p>
+
+    <div>
+      <pre>
+
+      </pre>
+    </div>
+
+
+
+
+  
+  </section>
+</MainLayout>

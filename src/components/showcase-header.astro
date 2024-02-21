@@ -1,0 +1,21 @@
+---
+import { buttonVariants } from "@/components/ui/button";
+import { getShowcase } from "@/lib/fetchers";
+import { cn } from "@/lib/utils";
+import Icon from "astro-icon";
+
+const categories = await getShowcase();
+
+type Props = {
+  title: string;
+};
+
+const { title } = Astro.props;
+const { category } = Astro.params;
+---
+
+<h1 class="inline-block font-heading text-4xl">{title}</h1>
+
+
+
+<hr class="mb-7" />

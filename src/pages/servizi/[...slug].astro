@@ -1,0 +1,28 @@
+---
+import BlogPostLayout from '@/layouts/servizi-layout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('servizi');
+	return posts.map((post) => ({
+		params: { slug: post.slug },
+		props: post,
+	}));
+}
+
+type Props = CollectionEntry<'servizi'>;
+
+const post = Astro.props;
+const slug = Astro.params.slug;
+const { Content } = await post.render();
+
+if (!slug || !post) {
+  return new Response(null, {
+    status: 404,
+    statusText: 'Non trovato'
+  });
+}
+---
+<BlogPostLayout {...post}>
+	<Content />
+</BlogPostLayout>
