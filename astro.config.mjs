@@ -7,7 +7,7 @@ import vercel from '@astrojs/vercel/static';
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://livedata-id.com",
+  site: "https://ldata1.vercel.app",
   integrations: [
     mdx({
       syntaxHighlight: 'shiki',
